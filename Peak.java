@@ -8,15 +8,15 @@ public class Peak{
 
 public static void main(String[] args){
 
-    System.out.println("Modular list size: 20");
    //This changes size of bimodular array 
-    int bimod_size = 20; 
+    int bimod_size = 20;  
     //Range of random values
     int random_range = 100;
 
+    System.out.println("bimodular array size: " + bimod_size);
 
     Random rand = new Random();
-    //Pick a random value for I
+    //Pick a random value for I or change it if you want to test for certain interval
     int I = ThreadLocalRandom.current().nextInt(1, bimod_size-1);
     int[] increasing = new int[I];
     int[] decreasing = new int[bimod_size - I];
@@ -40,11 +40,15 @@ public static void main(String[] args){
        }
     }
 
+    Arrays.sort(increasing);
     counter = 0;
         while (counter < decreasing.length){
         int nextInt = rand.nextInt(random_range);
-        if (uniqueness_dec[nextInt] != -1){
+        if (uniqueness_dec[nextInt] != -1 ){//Make sure max of increasing value is not duplicated
            System.out.println(nextInt + " was already in the list");
+        }else if (nextInt == increasing[increasing.length-1]){ //Make sure we don't duplicate max values
+            System.out.println("We don't duplicate max values..... " + nextInt ); 
+        
         }else{
         decreasing[counter] = nextInt;
         uniqueness_dec[nextInt] = 1;
@@ -52,9 +56,7 @@ public static void main(String[] args){
     }
         
 }
-
-    //Sort the increasing part of the list
-    Arrays.sort(increasing);
+    //Sort the decreasing part of the list
     Arrays.sort(decreasing);
      
 
@@ -71,9 +73,21 @@ public static void main(String[] args){
     for (int i = 0; i < bimodular.length; i++){
         System.out.print(bimodular[i] + " ");
     }
-    int alg_sol = findPeak(bimodular, 1, bimodular.length-1);
-    System.out.println("\nSolution to problem: \nMax value: " + bimodular[I] + "\n Index: " + I);
-    System.out.println("Algorithm solution:\n" + "Max Value: " + bimodular[alg_sol] + "\n Index: " + 0);
+
+    int solution;
+    int dec_max = decreasing[decreasing.length -1 ];
+    System.out.println("dec_max: " + dec_max);
+    int inc_max = increasing[increasing.length-1];
+    System.out.println("inc_max: " +  inc_max);
+    if (inc_max > dec_max){
+        solution = increasing.length-1;
+    }else{
+        solution = increasing.length;
+    }
+
+    int alg_sol = findPeak(bimodular, 0, bimodular.length);
+    System.out.println("\nSolution to problem: \nMax value: " + bimodular[solution] + "\n Index: " + (solution));
+    System.out.println("Algorithm solution:\n" + "Max Value: " + bimodular[alg_sol] + "\n Index: " + alg_sol);
     
 
 }
@@ -84,7 +98,21 @@ public static void main(String[] args){
      * */
      public static int findPeak(int[] bimod, int l_lim, int u_lim){
          //Algorithm goes here
-         return 0;
+         //if (u_lim == l_lim) return l_lim;
+         if (u_lim - l_lim == 2) return l_lim + 1;
+         //if (u_lim - l_lim == 1) return l_lim;
+        // Similar to bin search just pick middle each time
+         int guess = (l_lim + u_lim) / 2;
+         if (bimod[guess] < bimod[guess + 1]){//If increasing 
+             //Update the lower limit
+             return findPeak(bimod,guess, u_lim);
+         
+         }else{//If decreasing
+             //Update the upper limit
+             return findPeak(bimod, l_lim, guess+1);
+         }
+            
+
      }
     
     

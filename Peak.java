@@ -1,16 +1,22 @@
 import java.util.Random;
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 
 public class Peak{
 
 public static void main(String[] args){
-    System.out.println("This is a mock program!");
-    int[] increasing = new int[10];
-    int[] decreasing = new int[10];
+
+    System.out.println("Modular list size: 20");
+    
+    //Pick a random value for I
+    int randomNum = ThreadLocalRandom.current().nextInt(1, 19);
+    Random rand = new Random();
+    int[] increasing = new int[randomNum];
+    int[] decreasing = new int[20 - randomNum];
     int[] uniqueness_inc = new int[10000];
     int[] uniqueness_dec = new int[10000];
-    Random rand = new Random();
     //Init each value to -1
     for (int i = 0; i < uniqueness_inc.length; i++){
         uniqueness_inc[i] = -1;

@@ -31,7 +31,7 @@ public static void main(String[] args){
     while (counter < increasing.length){
        int nextInt = rand.nextInt(random_range);
        if (uniqueness_inc[nextInt] != -1){
-           System.out.println(nextInt + " was already in the list!");
+           //System.out.println(nextInt + " was already in the list!");
        }else{
        //A unique number (to satisfy strict inequality constraint)
        increasing[counter] = nextInt;
@@ -45,9 +45,9 @@ public static void main(String[] args){
         while (counter < decreasing.length){
         int nextInt = rand.nextInt(random_range);
         if (uniqueness_dec[nextInt] != -1 ){//Make sure max of increasing value is not duplicated
-           System.out.println(nextInt + " was already in the list");
+           //System.out.println(nextInt + " was already in the list");
         }else if (nextInt == increasing[increasing.length-1]){ //Make sure we don't duplicate max values
-            System.out.println("We don't duplicate max values..... " + nextInt ); 
+            //System.out.println("We don't duplicate max values..... " + nextInt ); 
         
         }else{
         decreasing[counter] = nextInt;

@@ -5,13 +5,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Peak{
-
+public static int ops = 0;
 public static void main(String[] args){
 
    //This changes size of bimodular array 
-    int bimod_size = 20;  
+    int bimod_size = 100;  
     //Range of random values
-    int random_range = 100;
+    int random_range = 1000;
 
     System.out.println("bimodular array size: " + bimod_size);
 
@@ -76,9 +76,7 @@ public static void main(String[] args){
 
     int solution;
     int dec_max = decreasing[decreasing.length -1 ];
-    System.out.println("dec_max: " + dec_max);
     int inc_max = increasing[increasing.length-1];
-    System.out.println("inc_max: " +  inc_max);
     if (inc_max > dec_max){
         solution = increasing.length-1;
     }else{
@@ -88,7 +86,7 @@ public static void main(String[] args){
     int alg_sol = findPeak(bimodular, 0, bimodular.length);
     System.out.println("\nSolution to problem: \nMax value: " + bimodular[solution] + "\n Index: " + (solution));
     System.out.println("Algorithm solution:\n" + "Max Value: " + bimodular[alg_sol] + "\n Index: " + alg_sol);
-    
+    System.out.println("Function calls: " + ops); 
 
 }
     /*@param bimod: A bimodular array with constraints seen in HW sheet
@@ -97,6 +95,7 @@ public static void main(String[] args){
      *
      * */
      public static int findPeak(int[] bimod, int l_lim, int u_lim){
+         ops++;
          //Algorithm goes here
          //if (u_lim == l_lim) return l_lim;
          if (u_lim - l_lim == 2) return l_lim + 1;

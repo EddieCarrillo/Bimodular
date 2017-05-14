@@ -9,9 +9,9 @@ public class Peak{
 public static void main(String[] args){
 
    //This changes size of bimodular array 
-    int bimod_size = 20;  
+    int bimod_size = 100000;  
     //Range of random values
-    int random_range = 100;
+    int random_range = 1000000;
 
     System.out.println("bimodular array size: " + bimod_size);
 
@@ -20,7 +20,7 @@ public static void main(String[] args){
     int I = ThreadLocalRandom.current().nextInt(1, bimod_size-1);
     int[] increasing = new int[I];
     int[] decreasing = new int[bimod_size - I];
-    int[] uniqueness_inc = new int[10000];
+    int[] uniqueness_inc = new int[random_range];
     int[] uniqueness_dec = new int[10000];
     //Init each value to -1
     for (int i = 0; i < uniqueness_inc.length; i++){
@@ -31,7 +31,7 @@ public static void main(String[] args){
     while (counter < increasing.length){
        int nextInt = rand.nextInt(random_range);
        if (uniqueness_inc[nextInt] != -1){
-           System.out.println(nextInt + " was already in the list!");
+           //System.out.println(nextInt + " was already in the list!");
        }else{
        //A unique number (to satisfy strict inequality constraint)
        increasing[counter] = nextInt;
@@ -45,9 +45,9 @@ public static void main(String[] args){
         while (counter < decreasing.length){
         int nextInt = rand.nextInt(random_range);
         if (uniqueness_dec[nextInt] != -1 ){//Make sure max of increasing value is not duplicated
-           System.out.println(nextInt + " was already in the list");
+           //System.out.println(nextInt + " was already in the list");
         }else if (nextInt == increasing[increasing.length-1]){ //Make sure we don't duplicate max values
-            System.out.println("We don't duplicate max values..... " + nextInt ); 
+            //System.out.println("We don't duplicate max values..... " + nextInt ); 
         
         }else{
         decreasing[counter] = nextInt;
@@ -76,9 +76,9 @@ public static void main(String[] args){
 
     int solution;
     int dec_max = decreasing[decreasing.length -1 ];
-    System.out.println("dec_max: " + dec_max);
+    //System.out.println("dec_max: " + dec_max);
     int inc_max = increasing[increasing.length-1];
-    System.out.println("inc_max: " +  inc_max);
+    //System.out.println("inc_max: " +  inc_max);
     if (inc_max > dec_max){
         solution = increasing.length-1;
     }else{

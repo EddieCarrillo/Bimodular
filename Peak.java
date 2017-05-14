@@ -21,7 +21,7 @@ public static void main(String[] args){
     int[] increasing = new int[I];
     int[] decreasing = new int[bimod_size - I];
     int[] uniqueness_inc = new int[random_range];
-    int[] uniqueness_dec = new int[10000];
+    int[] uniqueness_dec = new int[random_range];
     //Init each value to -1
     for (int i = 0; i < uniqueness_inc.length; i++){
         uniqueness_inc[i] = -1;
